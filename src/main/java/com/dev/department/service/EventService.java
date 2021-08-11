@@ -4,9 +4,13 @@ package com.dev.department.service;
 import com.dev.department.entity.Event;
 import com.dev.department.entity.Mail;
 import com.dev.department.repository.EventRepository;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileInputStream;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -20,17 +24,15 @@ public class EventService {
     @Autowired
     MailService mailService;
 
-    public List<Event> saveAll(List<Event> event) {
-        List<Event> eventResponse=eventRepository.saveAll(event);
-        for(Event e:eventResponse ){
-        sendNotification(e);
-        }
-        return eventResponse;
-    }
+@Autowired
+    FirebaseServices firebaseServices;
 
-    public Event saveEvent(Event event){
+
+
+    public Event saveEvent(Event event) throws Exception{
        Event eventResponse=eventRepository.save(event);
         sendNotification(eventResponse);
+        //firebaseServices.saveEventDetails(event);
         return eventResponse;
     }
 

@@ -27,7 +27,7 @@ public class EventController {
 
     @PostMapping(path="/setEvent")
     @CrossOrigin(originPatterns = "*")
-    public Event saveEvent(@RequestBody Event event) {
+    public Event saveEvent(@RequestBody Event event) throws Exception{
         String str = event.getActivityAllUsers().replaceAll("title","").replaceAll("[^a-zA-Z0-9@_.,]", "");
         System.out.println(str);
         event.setActivityAllUsers(str.trim());
