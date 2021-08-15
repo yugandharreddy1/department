@@ -46,6 +46,9 @@ public class EventController {
         if (eventData.getEventId()!=null&& eventData.getActivityBookedUser()==null) {
             eventData.setActivityBooked(true);
             eventData.setActivityBookedUser(emailid);
+            int noOfPeople=Integer.valueOf(eventData.getNoOfPeople());
+            noOfPeople=noOfPeople-1;
+            eventData.setNoOfPeople(String.valueOf(noOfPeople));
             return new ResponseEntity(eventService.updateEvent(eventData), HttpStatus.OK);
         } else {
             return new ResponseEntity("Already booked", HttpStatus.OK);

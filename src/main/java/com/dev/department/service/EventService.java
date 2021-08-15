@@ -31,6 +31,7 @@ public class EventService {
 
     public Event saveEvent(Event event) throws Exception{
        Event eventResponse=eventRepository.save(event);
+       System.out.println(event.toString());
         sendNotification(eventResponse);
         //firebaseServices.saveEventDetails(event);
         return eventResponse;
@@ -56,7 +57,7 @@ public class EventService {
             Mail mail = new Mail();
             mail.setMailFrom("informationtechnologyhyderabad@gmail.com");
             mail.setMailTo(emails[i]);
-            mail.setMailSubject("Please accept the Event Invite from Helpers Desk");
+            mail.setMailSubject("Please accept the Event Invite from Volunteer Connect ");
             mail.setMailContent("<!DOCTYPE html>\n" +
                     "<html>\n" +
                     "<head>\n" +
@@ -83,7 +84,7 @@ public class EventService {
                     "  <tr>\n" +
                     "    <th>Please click on below button for Accepting the Activity Event Timings</th>\n" +
                     "    <th>"+"<a href=http://localhost:9001/events/update/"+e.getEventId()+"/"+emails[i]+" >"
-                    +" <button class=\"button\">"+e.getActivityDate()+ " " +e.getActivityTime()+"</button> </a>");
+                    +" <button class=\"button\">"+e.getEventStartDate()+ " "+e.getEventEndDate()+"  " +e.getActivityTime()+"</button> </a>");
             mailService.sendEmail(mail);
             System.out.println("sentMail to :"+emails[i]);
         }
