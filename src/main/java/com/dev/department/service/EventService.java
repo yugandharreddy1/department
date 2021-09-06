@@ -83,7 +83,7 @@ public class EventService {
                     "<table style=\"width:50%\">\n" +
                     "  <tr>\n" +
                     "    <th>Please click on below button for Accepting the Activity Event Timings</th>\n" +
-                    "    <th>"+"<a href=http://localhost:9001/events/update/"+e.getEventId()+"/"+emails[i]+" >"
+                    "    <th>"+"<a href=https://spring-boot-helper.herokuapp.com/events/update/"+e.getEventId()+"/"+emails[i]+" >"
                     +" <button class=\"button\">"+e.getEventStartDate()+ " "+e.getEventEndDate()+"  " +e.getActivityTime()+"</button> </a>");
             mailService.sendEmail(mail);
             System.out.println("sentMail to :"+emails[i]);
